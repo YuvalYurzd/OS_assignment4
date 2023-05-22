@@ -128,7 +128,7 @@ int server(Reactor* reactor){
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_addr.s_addr = INADDR_ANY;
-    serverAddress.sin_port = htons(9036);
+    serverAddress.sin_port = htons(9034);
 
     // Bind the server socket to the address
     if (bind(serverSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) == -1) {
