@@ -33,11 +33,13 @@ void addFD(Reactor* reactor, int fd, int (*callback)(int)) {
         reactor->maxFd = fd;
     }
 }
+
 // Example callback function
 int eventCallback(int fd) {
     printf("Event occurred on file descriptor %d\n", fd);
     return 0;
 }
+
 int eventCallback2(int serverSocket) {
         
         // Accept incoming connection
@@ -51,11 +53,11 @@ int eventCallback2(int serverSocket) {
 
         // Do something with the client socket
         printf("Accepted connection from %s:%d\n", inet_ntoa(clientAddress.sin_addr), ntohs(clientAddress.sin_port));
-        // ... Handle the client socket
 
         // Register the client socket event
         return clientSocket;
 }
+
 // Callback function for handling client messages
 int handleClientMessage(int clientSocket) {
     char buffer[1024];
@@ -72,6 +74,7 @@ int handleClientMessage(int clientSocket) {
     }
     return 0;
 }
+
 void stopReactor(void* this){
     Reactor* react = (Reactor*) this;
     if(react->isRunning == 0)
@@ -108,8 +111,6 @@ void reactorRun(Reactor* reactor, int serverSocket) {
 
 
 int server(Reactor* reactor){
-   // Reactor reactor;
-    //signal(SIGINT, handleSignal);
     // Create a server socket
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (serverSocket == -1) {
