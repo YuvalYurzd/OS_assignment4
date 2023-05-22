@@ -64,10 +64,7 @@ int handleClientMessage(int clientSocket) {
         perror("recv");
         return -1;
     } else if (bytesRead == 0) {
-        // Client has closed the connection
-        printf("Client disconnected\n");
-        close(clientSocket);
-        return -1;
+        return 1;
     } else {
         buffer[bytesRead] = '\0';
         printf("Received message from client: %s\n", buffer);
@@ -131,7 +128,7 @@ int server(Reactor* reactor){
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_addr.s_addr = INADDR_ANY;
-    serverAddress.sin_port = htons(9034);
+    serverAddress.sin_port = htons(9036);
 
     // Bind the server socket to the address
     if (bind(serverSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) == -1) {
